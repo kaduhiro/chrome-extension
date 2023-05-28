@@ -8,9 +8,11 @@ include .env
 # --------------------------------------------------
 dev:
 	$(DOCKER_COMPOSE) exec $(SERVICE) yarn dev
-build:
+deploy:
 	$(DOCKER_COMPOSE) exec $(SERVICE) yarn build
-	
+
+.PHONY: dev deploy
+
 src/%.ts:
 	$(MAKE) ts-node/$@
 ts-node/%:
