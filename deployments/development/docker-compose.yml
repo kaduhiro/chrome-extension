@@ -1,0 +1,51 @@
+version: '3.8'
+
+x-var: &COMMON
+  networks:
+    internal:
+
+networks:
+  internal:
+
+services:
+  nginx-proxy:
+    <<: *COMMON
+    image: nginxproxy/nginx-proxy:latest
+    container_name: nginx-proxy
+    hostname: nginx-proxy
+    ports:
+      - 80:80
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+  nginx:
+    <<: *COMMON
+    image: nginx:latest
+    container_name: chrome-extension-$PROJECT-html
+    hostname: chrome-extension-$PROJECT-html
+    volumes:
+      - ../../html:/usr/share/nginx/html
+      - ./nginx/templates:/etc/nginx/templates
+    environment:
+      VIRTUAL_HOST: chrome-extension-$PROJECT.internal
+      VIRTUAL_PORT: 80
+      ALLOW_ORIGIN: http://chrome-extension-$PROJECT.internal
+  chrome-extension:
+    <<: *COMMON
+    build: ../../build
+    image: chrome-extension:1
+    container_name: chrome-extension-$PROJECT
+    hostname: chrome-extension-$PROJECT
+    ports:
+      - 9012:9012
+    volumes:
+      - ../..:/app
+      # - /tmp/lima/dist:/tmp/lima/dist # for lima on macOS
+    working_dir: /app
+    environment:
+      PATH: /app/node_modules/.bin:$PATH
+      PROJECT: $PROJECT
+      NODE_ENV: $ENVIRONMENT
+    command:
+      - tail
+      - -f
+      - /dev/null

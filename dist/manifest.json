@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "name": "chrome-extension",
+  "description": "Chrome Extension Manifest V3",
+  "author": "github@kaduhiro.com",
+  "icons": {
+    "16": "img/icon.png",
+    "32": "img/icon.png",
+    "64": "img/icon.png",
+    "128": "img/icon.png"
+  },
+  "background": {
+    "service_worker": "js/background.bundle.js"
+  },
+  "action": {
+    "default_icon": "img/icon.png",
+    "default_popup": "html/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "css": ["css/popup.css"],
+      "js": ["js/content.bundle.js"]
+    }
+  ]
+}
