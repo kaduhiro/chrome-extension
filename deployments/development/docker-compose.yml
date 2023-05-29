@@ -20,8 +20,8 @@ services:
   nginx:
     <<: *COMMON
     image: nginx:latest
-    container_name: chrome-extension-$PROJECT-html
-    hostname: chrome-extension-$PROJECT-html
+    container_name: chrome-extension-$PROJECT-nginx
+    hostname: chrome-extension-$PROJECT-nginx
     volumes:
       - ../../html:/usr/share/nginx/html
       - ./nginx/templates:/etc/nginx/templates
