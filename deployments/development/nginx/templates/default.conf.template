@@ -21,6 +21,30 @@ server {
         add_header Access-Control-Allow-Credentials true;
     }
 
+    location /dist {
+        alias  /usr/share/nginx/dist/html;
+        index  index.html index.htm;
+
+        # indexes
+        autoindex on;
+        autoindex_exact_size off;
+        autoindex_localtime on;
+
+        # cors
+        add_header Access-Control-Allow-Origin ${ALLOW_ORIGIN};
+        add_header Access-Control-Allow-Methods "POST, GET, OPTIONS";
+        add_header Access-Control-Allow-Headers "Origin, Authorization, Accept";
+        add_header Access-Control-Allow-Credentials true;
+    }
+
+    location /css {
+        alias  /usr/share/nginx/dist/css;
+    }
+
+    location /js {
+        alias  /usr/share/nginx/dist/js;
+    }
+
     #error_page  404              /404.html;
 
     # redirect server error pages to the static page /50x.html

@@ -24,6 +24,7 @@ services:
     hostname: chrome-extension-$PROJECT-nginx
     volumes:
       - ../../html:/usr/share/nginx/html
+      - ../../dist:/usr/share/nginx/dist
       - ./nginx/templates:/etc/nginx/templates
     environment:
       VIRTUAL_HOST: chrome-extension-$PROJECT.internal
