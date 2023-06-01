@@ -22,8 +22,10 @@
     "stripInternal": true,
     "target": "ES2020",
     "importHelpers": true,
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "~/*": ["*"],
+      "@/*": ["src/*"]
     }
   },
   "include": ["src/**/*.js", "src/**/*.ts"]
