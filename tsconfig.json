@@ -2,7 +2,7 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
-    "types": ["node", "jquery"],
+    "types": ["node", "chrome", "jquery"],
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "lib": ["ES2020"],
