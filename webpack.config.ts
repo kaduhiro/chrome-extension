@@ -1,19 +1,11 @@
 import path from 'path';
 import webpack from 'webpack';
 
-const isDev = process.env.NODE_ENV !== 'production';
-
-const getEntry = (name: string) => {
-  return [path.join('@', name), ...(isDev ? [`mv3-hot-reload/${name}`] : [])];
-};
-
 const config: webpack.Configuration = {
-  watch: isDev,
-  mode: isDev ? 'development' : 'production',
-  devtool: isDev ? 'cheap-module-source-map' : 'source-map',
   entry: {
-    background: getEntry('background'),
-    content: getEntry('content'),
+    background: path.join('@', 'background'),
+    content: path.join('@', 'content'),
+    popup: path.join('@', 'popup'),
   },
   output: {
     path: path.join(__dirname, 'dist', 'js'),
