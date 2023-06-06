@@ -1,7 +1,8 @@
 .ONESHELL:
 
-include .env.local
-include .env
+include .env env.local
+
+DOCKER_COMPOSE=docker-compose -f deployments/$(ENVIRONMENT)/docker-compose.yml --env-file .env.local
 
 # --------------------------------------------------
 # node
