@@ -1,6 +1,6 @@
 .ONESHELL:
 
-include .env env.local
+include .env .env.local
 
 DOCKER_COMPOSE=docker-compose -f deployments/$(ENVIRONMENT)/docker-compose.yml --env-file .env.local
 
